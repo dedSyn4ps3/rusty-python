@@ -8,8 +8,6 @@
 
 <br>
 
-<br>
-
 ## Overview 🔍
 While this project is by no means extensive, it's meant to at least serve as a starting point for those looking to improve their Python applications by writing and implementing custom modules in Rust.
 
