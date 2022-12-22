@@ -4,7 +4,7 @@
 
 <br>
 
-> This crate was written to test with the [python-with-rust]("https://github.com/dedsyn4ps3/python-with-rust") command line application 
+> This crate was written to test with the [`python-with-rust`]("https://github.com/dedsyn4ps3/python-with-rust") command line application 
 
 <br>
 
