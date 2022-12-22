@@ -8,12 +8,10 @@ use reqwest::Result;
 use serde::Deserialize;
 
 use std::time::Duration;
-use std::path::Path;
 
 use colored::Colorize;
 
 use crate::logger;
-use crate::writer;
 
 /////////////////////////////
 // User struct declaration //
@@ -51,31 +49,23 @@ async fn github_test(user: &str) -> Result<()> {
 }
 
 #[tokio::main]
-pub async fn write_and_request(path: &str) -> Result<()> {
-
-    // Create a `PathBuf` to pass to our `write_file` futures
-    let dir_path = Path::new(path);
+pub async fn start() -> Result<()> {
 
     // Create an example array of names to use for testing
     let names = ["dead_wood","eazy_e","dedSyn4ps3","ferris_wheel"];
 
     // Create futures and add to a collection
     //   - One `vector` for async requests
-    //   - One `vector` for async file writes
     let mut request_futures = vec![];
-    let mut write_futures = vec![];
 
     // Loop over `names` and create new futures for each
     for name in names {
         let _future1 = task::spawn(github_test(name));
-        let _future2 = task::spawn(writer::write_file(name, dir_path.to_owned()));
         request_futures.push(_future1);
-        write_futures.push(_future2);
     }
 
-    // Join our futures for both `request` and `write`
+    // Join our futures
     let _ = join_all(request_futures).await;
-    let _ = join_all(write_futures).await;
 
     Ok(())
 }

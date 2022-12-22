@@ -2,7 +2,7 @@ use pyo3::prelude::*;
 use pyo3::wrap_pyfunction;
 
 mod logger;
-mod write_request;
+mod run_requests;
 mod writer;
 
 /// Says Hello
@@ -28,13 +28,13 @@ fn run_loops() {
     logger::debug("Process Finished");
 }
 
-/// Makes async requests and writes static text to files
+/// Makes async requests to query Github usernames
 #[pyfunction]
-fn make_write_request(filepath: String) {
-    logger::info("Running async requests and file writing...");
+fn begin_request_test() {
+    logger::info("Running async requests...");
 
     print!("\n");
-    match write_request::write_and_request(&filepath) {
+    match run_requests::start() {
         // If function returned OK...
         Ok(_) => {
             print!("\n\n");
@@ -43,7 +43,7 @@ fn make_write_request(filepath: String) {
         // Otherwise...
         Err(_) => {
             print!("\n\n");
-            logger::warn("write_and_request returned errors...");
+            logger::warn("begin_request_test returned errors...");
         },
     }
 }
@@ -54,6 +54,6 @@ fn make_write_request(filepath: String) {
 fn rusty_python(_py: Python, m: &PyModule) -> PyResult<()> {
     m.add_function(wrap_pyfunction!(say_hello, m)?)?;
     m.add_function(wrap_pyfunction!(run_loops, m)?)?;
-    m.add_function(wrap_pyfunction!(make_write_request, m)?)?;
+    m.add_function(wrap_pyfunction!(begin_request_test, m)?)?;
     Ok(())
 }
