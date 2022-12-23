@@ -4,6 +4,9 @@ build-backend = "maturin"
 
 [project]
 name = "rusty-python"
+description = "A test crate for using Rust functions with Python!"
+readme = "README.md"
+license = {file = "LICENSE"}
 requires-python = ">=3.8"
 classifiers = [
     "Programming Language :: Rust",
@@ -11,4 +14,5 @@ classifiers = [
     "Programming Language :: Python :: Implementation :: PyPy",
 ]
 
-
+[project.urls]
+repository = "https://github.com/dedsyn4ps3/rusty-python"
