@@ -3,7 +3,6 @@ use pyo3::wrap_pyfunction;
 
 mod logger;
 mod run_requests;
-mod writer;
 
 /// Says Hello
 #[pyfunction]
